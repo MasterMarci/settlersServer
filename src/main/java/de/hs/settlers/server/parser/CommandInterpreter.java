@@ -30,6 +30,8 @@ public class CommandInterpreter extends textProtocolBaseVisitor {
         return null;
     }
 
+
+    // TODO get a real session
     @Override
     public Object visitLogin(textProtocolParser.LoginContext ctx) {
         String userName = ctx.username.getText();
@@ -44,13 +46,14 @@ public class CommandInterpreter extends textProtocolBaseVisitor {
             return null;
         }
 
-        commandAnswer = "LOGIN FAILED";
+        commandAnswer = "ERROR";
         return null;
     }
 
     @Override
     public Object visitCommand(textProtocolParser.CommandContext ctx) {
-        if(ctx.NOOP() != null) {
+        // just send ok for noop and logout. this allows logout without being logged in, maybe should be changed later.
+        if(ctx.NOOP() != null || ctx.LOGOUT() != null) {
             commandAnswer = "OK";
             return null;
         }
