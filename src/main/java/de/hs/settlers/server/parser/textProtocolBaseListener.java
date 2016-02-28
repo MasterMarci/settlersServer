@@ -16,18 +16,6 @@ public class textProtocolBaseListener implements textProtocolListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCommands(textProtocolParser.CommandsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCommands(textProtocolParser.CommandsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCommand(textProtocolParser.CommandContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -47,18 +35,6 @@ public class textProtocolBaseListener implements textProtocolListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLogin(textProtocolParser.LoginContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterLogout(textProtocolParser.LogoutContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLogout(textProtocolParser.LogoutContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -124,18 +100,6 @@ public class textProtocolBaseListener implements textProtocolListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUploadMap(textProtocolParser.UploadMapContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUploadMap(textProtocolParser.UploadMapContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterDownloadMap(textProtocolParser.DownloadMapContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -160,13 +124,13 @@ public class textProtocolBaseListener implements textProtocolListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNoop(textProtocolParser.NoopContext ctx) { }
+	@Override public void enterPwd(textProtocolParser.PwdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNoop(textProtocolParser.NoopContext ctx) { }
+	@Override public void exitPwd(textProtocolParser.PwdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

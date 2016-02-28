@@ -1,7 +1,7 @@
 package de.hs.settlers.server;
 
 import de.hs.settlers.server.parser.CommandInterpreter;
-import de.hs.settlers.server.parser.textProtocolParser.CommandsContext;
+import de.hs.settlers.server.parser.textProtocolParser.CommandContext;
 import de.hs.settlers.server.parser.textProtocolLexer;
 import de.hs.settlers.server.parser.textProtocolParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -33,24 +33,23 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        try {
+            while (clientConnection.isClosed() == false) {
 
-        while (clientConnection.isClosed() == false) {
-            try {
-                String command = reader.readLine();
-                CharStream charStream = new ANTLRInputStream(command);
-                textProtocolLexer textProtocolLexer = new textProtocolLexer(charStream);
-                CommonTokenStream commonTokenStream = new CommonTokenStream(textProtocolLexer);
-                textProtocolParser textProtocolParser = new textProtocolParser(commonTokenStream);
-                CommandsContext commands = textProtocolParser.commands();
-                CommandInterpreter commandInterpreter = new CommandInterpreter();
-                commandInterpreter.visit(commands);
-                writer.append(commandInterpreter.getCommandAnswer());
-                writer.newLine();
-                writer.flush();
-
-            } catch (IOException e) {
-                e.printStackTrace();
+                    String command = reader.readLine();
+                    CharStream charStream = new ANTLRInputStream(command);
+                    textProtocolLexer textProtocolLexer = new textProtocolLexer(charStream);
+                    CommonTokenStream commonTokenStream = new CommonTokenStream(textProtocolLexer);
+                    textProtocolParser textProtocolParser = new textProtocolParser(commonTokenStream);
+                    CommandContext commands = textProtocolParser.command();
+                    CommandInterpreter commandInterpreter = new CommandInterpreter();
+                    commandInterpreter.visit(commands);
+                    writer.append(commandInterpreter.getCommandAnswer());
+                    writer.newLine();
+                    writer.flush();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -11,12 +11,6 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface textProtocolVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link textProtocolParser#commands}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCommands(textProtocolParser.CommandsContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link textProtocolParser#command}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -28,12 +22,6 @@ public interface textProtocolVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLogin(textProtocolParser.LoginContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link textProtocolParser#logout}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLogout(textProtocolParser.LogoutContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link textProtocolParser#help}.
 	 * @param ctx the parse tree
@@ -65,12 +53,6 @@ public interface textProtocolVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMsg(textProtocolParser.MsgContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link textProtocolParser#uploadMap}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUploadMap(textProtocolParser.UploadMapContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link textProtocolParser#downloadMap}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -83,11 +65,11 @@ public interface textProtocolVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCreateTestplayer(textProtocolParser.CreateTestplayerContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link textProtocolParser#noop}.
+	 * Visit a parse tree produced by {@link textProtocolParser#pwd}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNoop(textProtocolParser.NoopContext ctx);
+	T visitPwd(textProtocolParser.PwdContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link textProtocolParser#identifier}.
 	 * @param ctx the parse tree

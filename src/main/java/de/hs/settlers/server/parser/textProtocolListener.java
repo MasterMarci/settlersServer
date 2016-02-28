@@ -8,16 +8,6 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface textProtocolListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link textProtocolParser#commands}.
-	 * @param ctx the parse tree
-	 */
-	void enterCommands(textProtocolParser.CommandsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link textProtocolParser#commands}.
-	 * @param ctx the parse tree
-	 */
-	void exitCommands(textProtocolParser.CommandsContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link textProtocolParser#command}.
 	 * @param ctx the parse tree
 	 */
@@ -37,16 +27,6 @@ public interface textProtocolListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLogin(textProtocolParser.LoginContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link textProtocolParser#logout}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogout(textProtocolParser.LogoutContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link textProtocolParser#logout}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogout(textProtocolParser.LogoutContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link textProtocolParser#help}.
 	 * @param ctx the parse tree
@@ -98,16 +78,6 @@ public interface textProtocolListener extends ParseTreeListener {
 	 */
 	void exitMsg(textProtocolParser.MsgContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link textProtocolParser#uploadMap}.
-	 * @param ctx the parse tree
-	 */
-	void enterUploadMap(textProtocolParser.UploadMapContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link textProtocolParser#uploadMap}.
-	 * @param ctx the parse tree
-	 */
-	void exitUploadMap(textProtocolParser.UploadMapContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link textProtocolParser#downloadMap}.
 	 * @param ctx the parse tree
 	 */
@@ -128,15 +98,15 @@ public interface textProtocolListener extends ParseTreeListener {
 	 */
 	void exitCreateTestplayer(textProtocolParser.CreateTestplayerContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link textProtocolParser#noop}.
+	 * Enter a parse tree produced by {@link textProtocolParser#pwd}.
 	 * @param ctx the parse tree
 	 */
-	void enterNoop(textProtocolParser.NoopContext ctx);
+	void enterPwd(textProtocolParser.PwdContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link textProtocolParser#noop}.
+	 * Exit a parse tree produced by {@link textProtocolParser#pwd}.
 	 * @param ctx the parse tree
 	 */
-	void exitNoop(textProtocolParser.NoopContext ctx);
+	void exitPwd(textProtocolParser.PwdContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link textProtocolParser#identifier}.
 	 * @param ctx the parse tree
