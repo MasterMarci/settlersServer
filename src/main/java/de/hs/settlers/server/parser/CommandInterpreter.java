@@ -17,16 +17,68 @@ public class CommandInterpreter extends textProtocolBaseVisitor {
     @Override
     public Object visitHelp(textProtocolParser.HelpContext ctx) {
 
-        String helpText = "Available commands after greeting: LOGIN, LOGOUT\r\n" +
-                            "User commands: ID, LIST USERS\r\n" +
-                            "Game management: LIST MAPS, CREATE GAME, LIST GAMES, JOIN GAME, UPLOAD MAP, DOWNLOAD MAP\r\n" +
-                            "Team management: LIST TEAMS\r\n" +
-                            "Other commands: CREATE TESTPLAYER, MSG, CHANGELOG, UPLOAD MAP, NOOP, HELP\r\n" +
-                            "send 'HELP <command>' for details\r\n" +
-                            "a successfull command will be acknowledged with an 'OK' line\r\n" +
-                            "an unsuccessfull command will be acknowledged with an 'ERROR' line";
+       String helpText = "Settlers of Catan - text based command help page\r\n" +
+                "Available commands after greeting:\r\nLOGIN, LOGOUT\r\n" +
+                "User commands:\r\nID, LIST USERS\r\n" +
+                "Game management:\r\nLIST MAPS, CREATE GAME, LIST GAMES, JOIN GAME, UPLOAD MAP, DOWNLOAD MAP\r\n" +
+                "Team management:\r\nLIST TEAMS\r\n" +
+                "Other commands:\r\nCREATE TESTPLAYER, MSG, CHANGELOG, UPLOAD MAP, NOOP, HELP\r\n\r\n" +
+                "send 'HELP <command>' for details\r\n" +
+                "a successfull command will be acknowledged with an 'OK' line\r\n" +
+                "an unsuccessfull command will be acknowledged with an 'ERROR' line";
 
-        commandAnswer = helpText;
+        try {
+
+            String infoFor = ctx.infoFor.getText();
+
+            switch(infoFor) {
+
+                case "LOGIN":
+                    helpText = "Using LOGIN Username Password";
+                case "LOGOUT":
+                    helpText = "Quit the Game";
+                case "ID":
+                    helpText = "Printing our current Username";
+                case "LIST USER":
+                    helpText = "Listing all online user";
+                case "LIST MAPS":
+                    helpText = "Listing all maps available on the server";
+                case "CREATE GAME":
+                    helpText = "";
+                case "LIST GAMES":
+                    helpText = "Listing all open games";
+                case "JOIN GAME":
+                    helpText = "";
+                case "UPLOAD MAP":
+                    helpText = "";
+                case "DOWNLOAD MAP":
+                    helpText = "";
+                case "LIST TEAMS":
+                    helpText = "";
+                case "CREATE TESTPLAYER":
+                    helpText = "";
+                case "MSG":
+                    helpText = "";
+                case "CHANGELOG":
+                    helpText = "";
+                case "NOOP":
+                    helpText = "";
+                case "HELP":
+                    helpText = "Shows the help page";
+                default:
+                    helpText = "help page or command not exist";
+
+            }
+        } catch (NullPointerException e) {
+
+            System.err.println("catch" + e.getMessage());
+
+        } finally {
+
+            commandAnswer = helpText;
+
+        }
+
         return null;
     }
 
@@ -36,6 +88,7 @@ public class CommandInterpreter extends textProtocolBaseVisitor {
     public Object visitLogin(textProtocolParser.LoginContext ctx) {
         String userName = ctx.username.getText();
         String password = ctx.password.getText();
+        System.out.println(userName + password);
         Player user = Server.USER_DATABASE.hasName(userName).first();
 
         if (user != null && user.getPassword().equals(password)) {
