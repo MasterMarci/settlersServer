@@ -1,6 +1,9 @@
 package de.hs.settlers.server;
 
-import de.hs.settlers.server.datamodel.UserDatabase;
+import de.hs.settlers.server.datamodel.generated.GameManager;
+import de.hs.settlers.server.datamodel.generated.Player;
+import de.hs.settlers.server.datamodel.generated.util.PlayerSet;
+import de.hs.settlers.server.util.HashUtils;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -19,7 +22,8 @@ public class Server {
     public static Logger generalLogging = Logger.getLogger("GENERAL");
     private static boolean isShutdown = false;
 
-    public static final UserDatabase USER_DATABASE = new UserDatabase();
+    public static final PlayerSet USER_DATABASE = new PlayerSet().with(new Player().withName("testuser").withPassword(HashUtils.hashFunctionSHA("test")));
+    public static final GameManager GAME_MANAGER = new GameManager();
 
     public static void main(String[] args) {
         ServerSocket serverSocket = null;

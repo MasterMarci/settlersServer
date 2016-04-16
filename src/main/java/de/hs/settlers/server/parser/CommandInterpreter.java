@@ -1,11 +1,8 @@
 package de.hs.settlers.server.parser;
 
 import de.hs.settlers.server.Server;
-import de.hs.settlers.server.datamodel.User;
-import org.antlr.v4.runtime.Token;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import de.hs.settlers.server.datamodel.generated.Game;
+import de.hs.settlers.server.datamodel.generated.Player;
 
 /**
  * Created by Mastermarci on 21.02.2016.
@@ -13,6 +10,9 @@ import java.util.logging.Logger;
 public class CommandInterpreter extends textProtocolBaseVisitor {
 
     private String commandAnswer;
+    public static final String LIST_MAPS_OPTION = "MAPS";
+    public static final String LIST_USERS_OPTION = "USERS";
+    public static final String LIST_GAMES_OPTION = "GAMES";
 
     @Override
     public Object visitHelp(textProtocolParser.HelpContext ctx) {
@@ -36,7 +36,7 @@ public class CommandInterpreter extends textProtocolBaseVisitor {
     public Object visitLogin(textProtocolParser.LoginContext ctx) {
         String userName = ctx.username.getText();
         String password = ctx.password.getText();
-        User user = Server.USER_DATABASE.findUser(userName);
+        Player user = Server.USER_DATABASE.hasName(userName).first();
 
         if (user != null && user.getPassword().equals(password)) {
             // TODO get rid of email or incorporat it into the datamodel
@@ -48,6 +48,22 @@ public class CommandInterpreter extends textProtocolBaseVisitor {
 
         commandAnswer = "ERROR";
         return null;
+    }
+
+    @Override
+    public Object visitList(textProtocolParser.ListContext ctx) {
+        switch(ctx.listOption.getText()) {
+            case LIST_GAMES_OPTION:
+                String gameList = "";
+                for (Game game : Server.GAME_MANAGER.getGames()) {
+                    String playerInfo = game.getPlayers().size() + "/" + game.getMaxPlayers();
+                    gameList += "GAME NAME=" + game.getName() + "EVENTS=0" + "MAPNAME="
+                            + game.getMap().getName() + "PLAYERS=" + playerInfo + "STATUS=JOINING TESTGAME=false";
+                }
+                commandAnswer = gameList;
+                break;
+        }
+        return super.visitList(ctx);
     }
 
     @Override

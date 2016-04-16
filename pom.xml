@@ -11,6 +11,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+            <id>Sonatype Snapshots</id>
+            <name>Sonatype Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+    </repositories>
+
     <!-- Dependencies -->
     <dependencies>
         <dependency>
@@ -20,9 +30,19 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.sdmlib</groupId>
+            <artifactId>SDMLib</artifactId>
+            <version>1.1.601</version>
+        </dependency>
+        <dependency>
             <groupId>org.antlr</groupId>
             <artifactId>antlr4-runtime</artifactId>
             <version>4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fujaba</groupId>
+            <artifactId>NetworkParser</artifactId>
+            <version>4.2.275</version>
         </dependency>
     </dependencies>
 
